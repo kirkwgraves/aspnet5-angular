@@ -1,13 +1,21 @@
-﻿@{
+﻿@model TheWorld.ViewModels.ContactViewModel
+@{
     ViewData["Title"] = "Contact Us";
 }
+@section scripts{
+  <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+  <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
 <h2>Contact</h2>
-<form>
-  <label>Name</label>
-  <input />
-  <label>Email</label>
-  <input type="email"/>
-  <label>Message</label>
-  <textarea cols="40" rows="4"></textarea>
+<form method="post">
+  <label asp-for="Name">Name</label>
+  <input asp-for="Name"/>
+  <span asp-validation-for="Name"></span>
+  <label asp-for="Email">Email</label>
+  <input asp-for="Email" type="email"/>
+  <span asp-validation-for="Email"></span>
+  <label asp-for="Message">Message</label>
+  <textarea asp-for="Message" cols="40" rows="4"></textarea>
+  <span asp-validation-for="Message"></span>
   <div><input type="submit" value="Send Message" /></div>
 </form>
