@@ -22,7 +22,8 @@ namespace TheWorld
 
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
 
             if (env.IsDevelopment())
             {
@@ -37,7 +38,7 @@ namespace TheWorld
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        public static IConfigurationRoot Configuration { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -55,6 +56,7 @@ namespace TheWorld
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            services.AddScoped<IMailService, DebugMailService>();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
