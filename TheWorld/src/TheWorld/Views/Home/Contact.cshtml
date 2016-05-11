@@ -10,16 +10,26 @@
 <form method="post">
   @if (ViewBag.Message != null)
   {
-      <div>@ViewBag.Message</div>    
+      <div>@ViewBag.Message</div>
   }
   <label asp-for="Name">Name</label>
-  <input asp-for="Name" />
+  <div>
+    <input asp-for="Name" />
+  </div>
   <span asp-validation-for="Name"></span>
-  <label asp-for="Email">Email</label>
-  <input asp-for="Email" type="email" />
+  <div>
+    <label asp-for="Email">Email</label>
+  </div>
+  <div>
+    <input asp-for="Email" type="email" />
+  </div>
   <span asp-validation-for="Email"></span>
-  <label asp-for="Message">Message</label>
-  <textarea asp-for="Message" cols="40" rows="4"></textarea>
+  <div>
+    <label asp-for="Message">Message</label>
+  </div>
+  <div>
+    <textarea asp-for="Message" cols="40" rows="4"></textarea>
+  </div>
   <span asp-validation-for="Message"></span>
   <div><input type="submit" value="Send Message" /></div>
 </form>
