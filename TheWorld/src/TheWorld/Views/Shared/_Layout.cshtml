@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>*@
-   @*<div id="sidebar">
+  <div id="sidebar">
     <img src="~/images/imgres.jpg" alt="headshot" class="headshot" />
     <span>Kirk Graves</span>
     <ul class="menu">
@@ -49,10 +49,17 @@
       <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
 
     </ul>
-  </div>*@
-  <div class="container body-content">
-    @RenderBody()
-    <hr />
+  </div>
+  <div id="wrapper">
+    <div id="main">
+        <button id="sidebarToggle" class="btn btn-primary">Toggle Menu</button>
+    
+  
+    <div>
+      @RenderBody()
+    </div>
+
+    </div>
     <footer>
       <p>&copy; 2016 - TheWorld</p>
     </footer>
@@ -77,4 +84,5 @@
 
   @RenderSection("scripts", required: false)
 </body>
+
 </html>

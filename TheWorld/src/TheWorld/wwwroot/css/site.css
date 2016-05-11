@@ -1,6 +1,6 @@
 ﻿/* site.css */
 
-body {
+/*body {
   font-family: sans-serif;
   font-size: 14px;
   margin: 0;
@@ -17,7 +17,7 @@ label {
 
 input[type=text], input[type=password], textarea {
   width: 150px;
-}
+}*/
 
 #main {
   background-color: #eee;
@@ -41,7 +41,7 @@ input[type=text], input[type=password], textarea {
     transition: margin-left ease .25s;
   }
 
-#footer {
+footer {
   background-color: #222;
   color: #eee;
   padding: 8px 4px;
@@ -85,4 +85,5 @@ input[type=text], input[type=password], textarea {
     -webkit-transition: left ease .25s;
     transition: left ease .25s;
   }
+
 
