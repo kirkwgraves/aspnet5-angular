@@ -5,20 +5,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using TheWorld.ViewModels;
 using TheWorld.Services;
+using TheWorld.Models;
 
 namespace TheWorld.Controllers
 {
     public class HomeController : Controller
     {
         private IMailService _mailService;
+        private WorldContext _context;
 
-        public HomeController(IMailService service)
+        public HomeController(IMailService service, WorldContext context)
         {
             _mailService = service;
+            _context = context;
         }
 
         public IActionResult Index()
         {
+            var trips = _context.Trips.OrderBy(t => t.Name).ToList();
             return View();
         }
 
