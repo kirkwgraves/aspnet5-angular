@@ -19,11 +19,11 @@ input[type=text], input[type=password], textarea {
   width: 150px;
 }*/
 
-#main {
+/*#main {
   background-color: #eee;
   padding: 4px;
   margin: 0;
-}
+}*/
 
 #wrapper {
   margin: 0 0 0 250px;
@@ -41,14 +41,14 @@ input[type=text], input[type=password], textarea {
     transition: margin-left ease .25s;
   }
 
-footer {
+/*footer {
   background-color: #222;
   color: #eee;
   padding: 8px 4px;
   position: fixed;
   bottom: 0;
   width: 100%;
-}
+}*/
 
 .headshot {
   max-width: 50px;
