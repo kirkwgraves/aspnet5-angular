@@ -58,13 +58,15 @@ namespace TheWorld
             services.AddMvc();
             services.AddScoped<IMailService, DebugMailService>();
 
+
             // Add application services.
+            services.AddTransient<WorldContextSeedData>();
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, WorldContextSeedData seeder, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -110,6 +112,8 @@ namespace TheWorld
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            seeder.EnsureSeedData();
         }
 
         // Entry point for the application.

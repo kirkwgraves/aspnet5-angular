@@ -23,6 +23,7 @@ namespace TheWorld.Controllers
         public IActionResult Index()
         {
             var trips = _context.Trips.OrderBy(t => t.Name).ToList();
+
             return View();
         }
 
