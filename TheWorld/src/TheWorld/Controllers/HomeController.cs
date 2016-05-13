@@ -12,19 +12,19 @@ namespace TheWorld.Controllers
     public class HomeController : Controller
     {
         private IMailService _mailService;
-        private WorldContext _context;
+        private IWorldRepository _repository;
 
-        public HomeController(IMailService service, WorldContext context)
+        public HomeController(IMailService service, IWorldRepository repository)
         {
             _mailService = service;
-            _context = context;
+            _repository = repository;
         }
 
         public IActionResult Index()
         {
-            var trips = _context.Trips.OrderBy(t => t.Name).ToList();
+            var trips = _repository.GetAllTrips();
 
-            return View();
+            return View(trips);
         }
 
         public IActionResult About()

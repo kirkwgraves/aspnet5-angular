@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<TheWorld.Models.Trip>
+@{
     ViewData["Title"] = "Home Page";
 }
 <div class="row">
@@ -24,6 +25,10 @@
 
   <div class="col-md-6">
     <h2>The Map</h2>
+    @foreach (var trip in Model)
+    {
+        <li>@trip.Name (@trip.Created.ToShortDateString())</li>
+    }
   </div>
 
 </div>
