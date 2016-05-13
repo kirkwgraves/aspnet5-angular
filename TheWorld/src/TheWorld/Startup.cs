@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TheWorld.Models;
 using TheWorld.Services;
+using Newtonsoft.Json.Serialization;
 
 namespace TheWorld
 {
@@ -55,7 +56,11 @@ namespace TheWorld
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(opt =>
+                {
+                    opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
         
             // Add application services.
             services.AddTransient<WorldContextSeedData>();
