@@ -56,11 +56,10 @@ namespace TheWorld
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-            services.AddScoped<IMailService, DebugMailService>();
-
-
+        
             // Add application services.
             services.AddTransient<WorldContextSeedData>();
+            services.AddScoped<IMailService, DebugMailService>();
             services.AddScoped<IWorldRepository, WorldRepository>();
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
