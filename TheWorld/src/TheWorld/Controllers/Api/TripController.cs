@@ -8,7 +8,7 @@ using TheWorld.Models;
 
 namespace TheWorld.Controllers.Api
 {
-
+    [Route("api/trips")] // Specifies root route on controller
     public class TripController : Controller
     {
         private IWorldRepository _repository;
@@ -18,11 +18,17 @@ namespace TheWorld.Controllers.Api
             _repository = repository;
         }
 
-        [HttpGet("api/trips")]
+        [HttpGet("")]
         public JsonResult Get()
         {
             var results = _repository.GetAllTripsWithStops();
             return Json(results);
+        }
+
+        [HttpPost("")]
+        public JsonResult Post(Trip newTrip)
+        {
+            return Json(true);
         }
     }
 }
