@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using TheWorld.Models;
 using TheWorld.Services;
 using Newtonsoft.Json.Serialization;
+using TheWorld.ViewModels;
 
 namespace TheWorld
 {
@@ -75,6 +76,11 @@ namespace TheWorld
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            AutoMapper.Mapper.Initialize(config =>
+            {
+                config.CreateMap<Trip, TripViewModel>().ReverseMap();
+            });
 
             app.UseApplicationInsightsRequestTelemetry();
 
