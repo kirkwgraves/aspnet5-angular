@@ -16,6 +16,11 @@ namespace TheWorld.Models
             _context = context;
         }
 
+        public void AddTrip(Trip newTrip)
+        {
+            _context.Add(newTrip);
+        }
+
         public IEnumerable<Trip> GetAllTrips()
         {
             return _context.Trips.OrderBy(t => t.Name).ToList();
@@ -27,6 +32,11 @@ namespace TheWorld.Models
                 .Include(t => t.Stops)
                 .OrderBy(t => t.Name)
                 .ToList();
+        }
+
+        public bool SaveAll()
+        {
+            return _context.SaveChanges() > 0;
         }
     }
 }
