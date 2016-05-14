@@ -1,13 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace TheWorld.ViewModels
 {
-    public class TripViewModel
+    public class StopViewModel
     {
         public int Id { get; set; }
 
@@ -15,8 +14,10 @@ namespace TheWorld.ViewModels
         [StringLength(255, MinimumLength = 5)]
         public string Name { get; set; }
 
-        public DateTime Created { get; set; } = DateTime.UtcNow; // New C# 6.0 syntax for initializing an auto-property
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
 
-        public IEnumerable<StopViewModel> Stops { get; set; }
+        [Required]
+        public DateTime Arrival { get; set; }
     }
 }
