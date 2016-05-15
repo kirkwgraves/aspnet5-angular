@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace TheWorld.Services
 {
     public class CoordService
     {
-        public CoordServiceResult Lookup(string location)
+        public async Task<CoordServiceResult> Lookup(string location)
         {
             var result = new CoordServiceResult()
             {
@@ -21,6 +22,10 @@ namespace TheWorld.Services
             var bingKey = Startup.Configuration["AppSettings:BingKey"];
             var encodedName = WebUtility.UrlEncode(location);
             var url = $"http://dev.virtualearth.net/REST/v1/Locations?q={encodedName}&key={bingKey}";
+
+            var client = new HttpClient();
+
+            var json = await client.GetStringAsync(url);
 
             return result;
         }
