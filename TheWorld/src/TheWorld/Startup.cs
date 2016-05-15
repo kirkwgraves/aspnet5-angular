@@ -66,6 +66,7 @@ namespace TheWorld
             // Add application services.
             services.AddTransient<WorldContextSeedData>();
             services.AddScoped<IMailService, DebugMailService>();
+            services.AddScoped<CoordService>();
             services.AddScoped<IWorldRepository, WorldRepository>();
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();

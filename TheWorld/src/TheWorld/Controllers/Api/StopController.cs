@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using TheWorld.Models;
+using TheWorld.Services;
 using TheWorld.ViewModels;
 
 namespace TheWorld.Controllers.Api
@@ -14,11 +15,13 @@ namespace TheWorld.Controllers.Api
     [Route("api/trips/{tripName}/stops")]
     public class StopController : Controller 
     {
+        private CoordService _coordService;
         private IWorldRepository _repository;
 
-        public StopController(IWorldRepository repository)
+        public StopController(IWorldRepository repository, CoordService coordService)
         {
             _repository = repository;
+            _coordService = coordService;
         }
 
         [HttpGet("")]
@@ -41,6 +44,7 @@ namespace TheWorld.Controllers.Api
             }
         }
 
+        [HttpPost("")]
         public JsonResult Post(string tripName, [FromBody]StopViewModel vm)
         {
             try
@@ -49,7 +53,18 @@ namespace TheWorld.Controllers.Api
                 {
                     // Map to the entity
                     var newStop = Mapper.Map<Stop>(vm);
-                    // Looking up Geocoordinates
+
+                    // Looking up Geocoordinates using CoordService
+                    var coordResult = _coordService.Lookup(newStop.Name);
+
+                    if (!coordResult.Success)
+                    {
+                        Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        return Json(coordResult.Message);
+                    }
+
+                    newStop.Longitude = coordResult.Longitude;
+                    newStop.Latitude = coordResult.Latitude;
 
                     // Save to the databasse
                     _repository.AddStop(tripName, newStop);
