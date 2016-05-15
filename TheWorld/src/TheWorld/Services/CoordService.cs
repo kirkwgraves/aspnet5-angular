@@ -20,7 +20,7 @@ namespace TheWorld.Services
             // Lookup Coordinates
             var bingKey = Startup.Configuration["AppSettings:BingKey"];
             var encodedName = WebUtility.UrlEncode(location);
-            var url = $"http://dev.virtualearth.net/REST/v1/Locations?=q{encodedName}&key={bingKey}";
+            var url = $"http://dev.virtualearth.net/REST/v1/Locations?q={encodedName}&key={bingKey}";
 
             return result;
         }
